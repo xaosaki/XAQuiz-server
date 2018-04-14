@@ -16,9 +16,11 @@
 5. В том же контейнере запустить наполнение базы: `php artisan  db:seed`
 
 ## Работа
+Запуск контейнеров: `docker-compose start`
+
 Остановка контейнеров: `docker-compose stop`
 
-Запуск контейнеров: `docker-compose start`
+Запуск терминала в контейнере `docker exec -it <containerIdOrName> bash`
 
 Резервное копирование базы:
 
