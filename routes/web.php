@@ -10,11 +10,33 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use \App\Http\Middleware\CheckQuizOwner;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('quiz-templates', 'QuizTemplateController');
+
+
+//Route::get('/user/{id}', 'UserController@show');
+//Route::resource('quiz-templates', 'QuizTemplateController');
+
+Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
+    Route::resource('quiz', 'AdminQuizController');
+    Route::resource('subject', 'AdminSubjectController');
+    Route::resource('quiz-template', 'AdminQuizTemplateController');
+});
+
+
+Route::prefix('quiz')->group(function () {
+    Route::get('/create/{templateId}', 'UserQuizController@create');
+    Route::get('/{quizId}/result', 'UserQuizController@showResult');
+    Route::get('/{quizId}/complete', 'UserQuizController@completeQuiz')->middleware(CheckQuizOwner::class);
+    Route::get('/{quizId}/{questionNumber}', 'UserQuizController@question')->middleware(CheckQuizOwner::class);
+    Route::post('/{quizId}/{questionNumber}', 'UserQuizController@storeAnswer')->middleware(CheckQuizOwner::class);
+});
+
+
+
 
 Auth::routes();
 

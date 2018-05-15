@@ -12,4 +12,6 @@ class QuizTemplate extends Model
     {
         return $this->belongsToMany('App\Subject', 'quiz_template_subject', 'quiz_template_id', 'subject_id')->withPivot('number_of_questions');
     }
+
+    public $timestamps = false;
 }

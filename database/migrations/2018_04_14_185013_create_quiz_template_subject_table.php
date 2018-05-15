@@ -14,6 +14,7 @@ class CreateQuizTemplateSubjectTable extends Migration
     public function up()
     {
         Schema::create('quiz_template_subject', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('quiz_template_id');
             $table->unsignedInteger('subject_id');
             $table->unsignedInteger('number_of_questions');

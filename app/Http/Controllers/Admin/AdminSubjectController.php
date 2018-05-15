@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Subject;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class AdminSubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,9 @@ class SubjectController extends Controller
     public function index()
     {
         //
+        $subjects = Subject::all();
+
+        return view('admin.subject.list', ['subjects' => $subjects]);
     }
 
     /**
@@ -24,7 +28,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.subject.create');
     }
 
     /**
@@ -35,7 +39,14 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject();
+        $data = $this->validate($request, [
+            'name'=> 'required'
+        ]);
+        $subject->name = $request->name;
+
+        $subject->save();
+        return redirect()->route('admin.subject.index');
     }
 
     /**
@@ -52,34 +63,43 @@ class SubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject $subject)
+    public function edit($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        return view('admin.subject.edit', ['subject' => $subject]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $data = $this->validate($request, [
+            'name'=> 'required'
+        ]);
+        $subject->name = $request->name;
+
+        $subject->save();
+        return redirect()->route('admin.subject.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return redirect()->route('admin.subject.index');
     }
 }

@@ -17,7 +17,9 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('quiz_template_id');
             $table->unsignedInteger('user_id');
-            $table->string('result');
+            $table->boolean('is_completed')->default(false);
+            $table->string('questions_count')->nullable();
+            $table->string('right_answers_count')->nullable();
             $table->foreign('quiz_template_id')->references('id')->on('quiz_templates');
             $table->foreign('user_id')->references('id')->on('users');
         });

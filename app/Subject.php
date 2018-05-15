@@ -10,4 +10,6 @@ class Subject extends Model
     {
         return $this->hasMany('App\Question', 'subject_id');
     }
+
+    public $timestamps = false;
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Quiz;
 use Illuminate\Http\Request;
 
-class QuizController extends Controller
+class AdminQuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,9 @@ class QuizController extends Controller
     public function index()
     {
         //
+        $quizzes = Quiz::with('template')->with('user')->get();
+
+        return view('admin.quiz.list', ['quizzes' => $quizzes]);
     }
 
     /**
@@ -25,6 +29,7 @@ class QuizController extends Controller
     public function create()
     {
         //
+        return view('quiz.create');
     }
 
     /**

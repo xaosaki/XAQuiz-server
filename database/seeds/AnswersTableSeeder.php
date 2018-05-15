@@ -12,9 +12,9 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
-        $text = ['<h1>','<h2>','<br>','margin','padding','border'];
-        $question_id = [1,1,1,2,2,2];
-        $is_correct = [true,true,false,false,true,false];
+        $text = ['<h1>','<h2>','<br>','margin','padding','border','margin','padding','border'];
+        $question_id = [1,1,1,2,2,2,3,3,3];
+        $is_correct = [true,true,false,false,true,false, true, false, false];
         for ($i = 0; $i < 6; $i++){
             DB::table('answers')->insert([
                 'text' => $text[$i],
