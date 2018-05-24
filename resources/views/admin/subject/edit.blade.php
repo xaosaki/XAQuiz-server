@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
             <form method="post" action="{{route('admin.subject.update', ['subject' => $subject->id])}}">
                 {{ method_field('PUT') }}
-                <div class="col-md-6 col-md-offset-3">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -15,11 +15,11 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
+                    <div class="card card-default">
+                        <div class="card-header clearfix">
                             <h4 class="pull-left">Изменить категорию вопросов</h4>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="form-group">
                                 {{ csrf_field() }}
                                 <label for="name">Название:</label>
@@ -29,8 +29,8 @@
                             <button type="submit" class="btn btn-primary pull-right">Сохранить</button>
                         </div>
                     </div>
-                </div>
             </form>
+            </div>
         </div>
     </div>
 @endsection

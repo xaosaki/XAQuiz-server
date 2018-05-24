@@ -1,0 +1,55 @@
+{
+  "menus": [
+    {
+      "section": "Основное",
+      "items": [
+        {
+          "title": "Шаблоны тестов",
+          "url": "\/admin\/quiz-template"
+        },
+        {
+          "title": "Категории вопросов",
+          "url": "\/admin\/subject"
+        },
+        {
+          "title": "Вопросы",
+          "url": "\/admin\/quiz"
+        },
+        {
+          "title": "Тесты",
+          "url": "\/admin\/quiz"
+        }
+      ]
+    },
+    {
+      "section": "Управление пользователями",
+      "items": [
+        {
+          "title": "Пользователи",
+          "url": "\/admin\/users"
+        },
+        {
+          "title": "Роли",
+          "url": "\/admin\/roles"
+        },
+        {
+          "title": "Разрешения",
+          "url": "\/admin\/permissions"
+        }
+      ]
+    },
+    {
+      "section": "Инструменты",
+      "items": [
+        {
+          "title": "Генератор",
+          "url": "\/admin\/generator"
+        }
+      ]
+    },
+    {
+      "section": "Modules",
+      "items": []
+    }
+  ]
+}

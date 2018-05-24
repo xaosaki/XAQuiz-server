@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Cache;
-use function Psy\debug;
 
 class HomeController extends Controller
 {

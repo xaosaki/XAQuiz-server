@@ -5,90 +5,54 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
+        <title>XAQuiz</title>
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700&amp;subset=cyrillic,latin" rel="stylesheet">
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
+            body{
+                font-family: 'Cormorant Garamond', 'Arial', serif;
+                background: #fdfdfd;
                 display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-items: center;
                 justify-content: center;
+                align-content: center;
+                height: 100vh;
             }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
+            .content{
                 text-align: center;
             }
-
-            .title {
-                font-size: 84px;
+            h1{
+                font-size: 150px;
+                margin-bottom: 40px;
+                margin-top: -140px;
+                color: #f77831;
+                background-image: -webkit-linear-gradient(92deg,#f35626,#ffaf43);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
+            p{
+                font-size: 30px;
+                color: #7070ad;
+            }
+            a{
+                color: #f77831;
+                font-size: 30px;
                 text-decoration: none;
-                text-transform: uppercase;
             }
-
-            .m-b-md {
-                margin-bottom: 30px;
+            a:hover{
+                border-bottom: 1px dotted;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        <div class="content">
+            <h1>Quiz</h1>
+            @auth
+                <a href="{{ url('/home') }}" class="content">Выбрать тест</a>
+            @else
+                <p>Для начала работы <a href="{{ route('login') }}">войдите</a> или <a href="{{ route('register') }}">зарегистрируйтесь</a>.</p>
+            @endauth
         </div>
     </body>
 </html>

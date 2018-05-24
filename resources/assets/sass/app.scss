@@ -1,16 +1,58 @@
-
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,600");
 
 // Variables
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
+body{
+  background-color: #fff;
+}
+.navbar-laravel {
+  background-color: transparent;
+}
+.navbar-brand{
+  color: #f77831;
+  font-size: 2.5rem;
+  font-family: "Cormorant Garamond", Arial, serif;
+}
 .navigation-buttons{
   margin-top: 3px;
 }
 .form-trigger{
   margin-right: 5px !important;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #ffffff;
+  border-color: #dee2e6 #dee2e6 #f5f8fa;
+}
+
+.btn-secondary{
+  border-color: #bbb8b8;
+}
+.visually-hidden{
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+.buttons-group{
+  margin-bottom: 15px;
+}
+.subject-group{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  select{
+    width: 75%;
+  }
+  input{
+    width: 20%;
+  }
+}
+.part-form-save-block{
+  display: none;
 }

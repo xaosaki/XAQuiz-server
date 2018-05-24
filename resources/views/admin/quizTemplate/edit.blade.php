@@ -1,36 +1,33 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <form method="post" action="{{route('admin.subject.update', ['subject' => $subject->id])}}">
-                {{ method_field('PUT') }}
-                <div class="col-md-6 col-md-offset-3">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
-                            <h4 class="pull-left">Изменить категорию вопросов</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                {{ csrf_field() }}
-                                <label for="name">Название:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{$subject->name}}"/>
-                            </div>
-                            <a href="{{route('admin.subject.index')}}" class="btn btn-default">Назад</a>
-                            <button type="submit" class="btn btn-primary pull-right">Сохранить</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">Редактировать шаблон теста</div>
+            <div class="card-body">
+                <a href="{{ route('admin.quiz-template.index') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Назад</button></a>
+                <br />
+                <br />
+
+                @if ($errors->any())
+                    <ul class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                {!! Form::model($quizTemplate[0], [
+                    'method' => 'PATCH',
+                    'url' => ['/admin/quiz-template', $quizTemplate[0]['id']],
+                    'class' => 'form-horizontal'
+                ]) !!}
+
+                @include ('admin.quizTemplate.form', ['submitButtonText' => 'Сохранить'])
+
+                {!! Form::close() !!}
+
+            </div>
         </div>
     </div>
 @endsection

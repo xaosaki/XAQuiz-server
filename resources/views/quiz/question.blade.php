@@ -10,14 +10,14 @@
                         <h4 class="pull-left">Вопрос {{$questionNumber}}</h4>
                         <div class="navigation-buttons pull-right">
                             @if($questionNumber > 1)
-                                <a href="{{ url('/quiz/'.$quizId.'/'.($questionNumber - 1)) }}" class="btn btn-default"><</a>
+                                <a href="{{ url('/quiz/'.$quizId.'/'.($questionNumber - 1)) }}" class="btn btn-secondary"><</a>
                             @else
-                                <a class="btn btn-default" disabled><</a>
+                                <a class="btn btn-secondary" disabled><</a>
                             @endif
                             @if($questionNumber < $questionCount)
-                                <a href="{{ url('/quiz/'.$quizId.'/'.($questionNumber + 1)) }}" class="btn btn-default">></a>
+                                <a href="{{ url('/quiz/'.$quizId.'/'.($questionNumber + 1)) }}" class="btn btn-secondary">></a>
                             @else
-                                <a class="btn btn-default" disabled>></a>
+                                <a class="btn btn-secondary" disabled>></a>
                             @endif
                         </div>
                     </div>

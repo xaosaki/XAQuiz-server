@@ -6,9 +6,10 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "appzcoder/laravel-admin": "^2.1",
         "doctrine/dbal": "^2.7",
-        "fideloper/proxy": "~3.3",
-        "laravel/framework": "5.5.*",
+        "fideloper/proxy": "^4.0",
+        "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "predis/predis": "^1.1"
     },

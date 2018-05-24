@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <form method="post" action="{{route('admin.subject.store')}}">
-                <div class="col-md-6 col-md-offset-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <form method="post" action="{{route('admin.subject.store')}}">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -14,11 +14,11 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
+                    <div class="card card-default">
+                        <div class="card-header clearfix">
                             <h4 class="pull-left">Новая категория вопросов</h4>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <div class="form-group">
                                 {{ csrf_field() }}
                                 <label for="name">Название:</label>
@@ -28,8 +28,8 @@
                             <button type="submit" class="btn btn-primary pull-right">Добавить</button>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
