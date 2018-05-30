@@ -15,9 +15,7 @@ use \App\Http\Middleware\CheckQuizOwner;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
-});
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::prefix('quiz')->group(function () {
@@ -32,15 +30,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.',  'm
     Route::resource('quiz', 'AdminQuizController');
     Route::resource('subject', 'AdminSubjectController');
     Route::resource('quiz-template', 'AdminQuizTemplateController');
+    Route::resource('question', 'AdminQuestionController');
+    Route::resource('roles', 'RolesController');
+    Route::resource('permissions', 'PermissionsController');
+    Route::resource('users', 'UsersController');
+    Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+    Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+});
+Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'roles'], 'roles' => 'administrator'], function () {
+    Route::get('admin', 'AdminController@index');
 });
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin', 'Admin\AdminController@index');
-Route::resource('admin/roles', 'Admin\RolesController');
-Route::resource('admin/permissions', 'Admin\PermissionsController');
-Route::resource('admin/users', 'Admin\UsersController');
-Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);

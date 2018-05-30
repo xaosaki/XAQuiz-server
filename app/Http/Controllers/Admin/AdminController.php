@@ -9,10 +9,9 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
      */
     public function index()
     {
-        return view('admin.dashboard');
+        return redirect()->route('admin.quiz-template.index');
     }
 }

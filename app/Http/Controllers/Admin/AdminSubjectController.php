@@ -15,10 +15,8 @@ class AdminSubjectController extends Controller
      */
     public function index()
     {
-        //
         $subjects = Subject::all();
-
-        return view('admin.subject.list', ['subjects' => $subjects]);
+        return view('admin.subject.index', compact('subjects'));
     }
 
     /**
@@ -40,24 +38,15 @@ class AdminSubjectController extends Controller
     public function store(Request $request)
     {
         $subject = new Subject();
-        $data = $this->validate($request, [
+        $this->validate($request, [
             'name'=> 'required'
+        ], [
+            'name.required' => 'Пожалуйста, укажите название',
         ]);
         $subject->name = $request->name;
 
         $subject->save();
-        return redirect()->route('admin.subject.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subject $subject)
-    {
-        //
+        return redirect()->route('admin.subject.index')->with('flash_message', 'Категория вопросов добавлена!');
     }
 
     /**
@@ -69,7 +58,7 @@ class AdminSubjectController extends Controller
     {
         $subject = Subject::findOrFail($id);
 
-        return view('admin.subject.edit', ['subject' => $subject]);
+        return view('admin.subject.edit', compact('subject'));
     }
 
     /**
@@ -81,13 +70,15 @@ class AdminSubjectController extends Controller
     public function update(Request $request, $id)
     {
         $subject = Subject::findOrFail($id);
-        $data = $this->validate($request, [
+        $this->validate($request, [
             'name'=> 'required'
+        ], [
+            'name.required' => 'Пожалуйста, укажите название',
         ]);
         $subject->name = $request->name;
 
         $subject->save();
-        return redirect()->route('admin.subject.index');
+        return redirect()->route('admin.subject.index')->with('flash_message', 'Категория вопросов обновлена!');
     }
 
     /**
@@ -100,6 +91,6 @@ class AdminSubjectController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->delete();
 
-        return redirect()->route('admin.subject.index');
+        return redirect()->route('admin.subject.index')->with('flash_message', 'Категория вопросов удалена!');
     }
 }

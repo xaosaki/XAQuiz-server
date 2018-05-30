@@ -13,12 +13,16 @@ class AdminQuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $quizzes = Quiz::with('template')->with('user')->get();
+        $keyword = $request->get('search');
 
-        return view('admin.quiz.list', ['quizzes' => $quizzes]);
+        if (!empty($keyword)) {
+            $quizzes = Quiz::with('template')->with('user')->where('text', 'LIKE', "%$keyword%")->get();
+        } else {
+            $quizzes = Quiz::with('template')->with('user')->get();
+        }
+        return view('admin.quiz.index', compact('quizzes'));
     }
 
     /**

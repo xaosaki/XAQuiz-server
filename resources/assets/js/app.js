@@ -22,4 +22,5 @@ const app = new Vue({
 });
 
 require('./quizTemplate');
+require('./answer');
 

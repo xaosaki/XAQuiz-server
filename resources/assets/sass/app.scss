@@ -6,8 +6,18 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+
 body{
   background-color: #fff;
+}
+#app{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.wrap{
+  flex: 1;
 }
 .navbar-laravel {
   background-color: transparent;
@@ -55,4 +65,26 @@ body{
 }
 .part-form-save-block{
   display: none;
+}
+.answer-row{
+  display: grid;
+  grid-template-areas:
+          '👻 🍕'
+          '👻 👽';
+  grid-template-columns: 5fr 1fr;
+  margin-bottom: 10px;
+  textarea{
+    display: inline-block;
+    grid-area: 👻;
+    width: 98%;
+  }
+  label{
+    grid-area: 🍕;
+    input{
+      margin-left: 10px;
+    }
+  }
+  button{
+    grid-area: 👽;
+  }
 }

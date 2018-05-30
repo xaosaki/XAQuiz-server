@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-10 col-md-offset-1">
                 <h3>{{$quizTitle}}</h3>
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
+                <div class="card card-default">
+                    <div class="card-header clearfix">
                         <h4 class="pull-left">Вопрос {{$questionNumber}}</h4>
                         <div class="navigation-buttons pull-right">
                             @if($questionNumber > 1)
@@ -21,7 +21,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <h5>{{$question['text']}}</h5>
                         <form method="POST">
                             {{ csrf_field() }}

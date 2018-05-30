@@ -3,9 +3,9 @@
 @section('content')
     <div class="col-md-9">
         <div class="card">
-            <div class="card-header">Создать новую категорию вопросов</div>
+            <div class="card-header">Добавить новый вопрос</div>
             <div class="card-body">
-                <a href="{{ route('admin.quiz-template.index') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Назад</button></a>
+                <a href="{{ route('admin.question.index') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Назад</button></a>
                 <br />
                 <br />
 
@@ -17,9 +17,9 @@
                     </ul>
                 @endif
 
-                {!! Form::open(['url' => '/admin/subject', 'class' => 'form-horizontal']) !!}
+                {!! Form::open(['url' => '/admin/question', 'class' => 'form-horizontal']) !!}
 
-                @include ('admin.subject.form')
+                @include ('admin.question.form')
 
                 {!! Form::close() !!}
 

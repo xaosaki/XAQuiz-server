@@ -59,6 +59,9 @@ class AdminQuizTemplateController extends Controller
         $this->validate($request, [
             'name'=> 'required',
             'subjects'=> 'required'
+        ], [
+            'subjects.required' => 'Пожалуйста, выберите темы',
+            'name.required' => 'Пожалуйста, укажите название',
         ]);
 
         $template_subjects = json_decode($request->subjects, true);
@@ -121,7 +124,11 @@ class AdminQuizTemplateController extends Controller
         $this->validate($request, [
             'name'=> 'required',
             'subjects'=> 'required'
-        ]);
+        ], [
+        'subjects.required' => 'Пожалуйста, выберите темы',
+        'name.required' => 'Пожалуйста, укажите название',
+        ]
+        );
 
         $template_subjects = json_decode($request->subjects, true);
         $template_subjects = array_map(function ($elem){

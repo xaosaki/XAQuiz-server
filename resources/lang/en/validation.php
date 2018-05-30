@@ -103,9 +103,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'subjects' => [
-            'required' => 'Пожалуйста, выберите темы'
-        ]
     ],
 
     /*
