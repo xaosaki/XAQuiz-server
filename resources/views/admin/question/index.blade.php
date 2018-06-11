@@ -8,6 +8,9 @@
                 <a href="{{ route('admin.question.create') }}" class="btn btn-success btn-sm" title="Add New">
                     <i class="fa fa-plus" aria-hidden="true"></i> Добавить
                 </a>
+                <a href="{{ route('admin.import-question') }}" class="btn btn-success btn-sm" title="Add New">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Импорт из файла
+                </a>
 
                 {!! Form::open(['method' => 'GET', 'url' => '/admin/question', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
                 <div class="input-group">
@@ -29,8 +32,8 @@
                         <tr>
                             <th>Текст</th>
                             <th>Категория</th>
-                            <th>Уровень сложности</th>
-                            <th>Действия</th>
+                            <th>Сложность</th>
+                            <th style="width: 30%;">Действия</th>
                         </tr>
                         </thead>
                         <tbody>

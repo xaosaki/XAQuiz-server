@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "appzcoder/laravel-admin": "^2.1",
+        "maatwebsite/excel": "~2.1.0",
         "doctrine/dbal": "^2.7",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",

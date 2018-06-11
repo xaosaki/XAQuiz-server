@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+
 Route::prefix('quiz')->group(function () {
     Route::post('/create', 'UserQuizController@create');
     Route::get('/info/{templateId}', 'UserQuizController@info');
@@ -35,6 +37,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.',  'm
     Route::resource('roles', 'RolesController');
     Route::resource('permissions', 'PermissionsController');
     Route::resource('users', 'UsersController');
+    Route::get('/import-question', 'ImportController@import')->name('import-question');
+    Route::post('/import-question', 'ImportController@postImport')->name('import-question-post');
     Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
     Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 });

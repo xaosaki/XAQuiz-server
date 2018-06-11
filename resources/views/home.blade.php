@@ -24,37 +24,6 @@
                 </div>
             </div>
         @endforeach
-
-
-        {{--<div class="col-md-10 col-md-offset-1">--}}
-            {{--<div class="card card-default">--}}
-                {{--<div class="card-header">Доступные тесты</div>--}}
-
-                {{--<div class="panel-body p-3">--}}
-                        {{--<div class="row">--}}
-                            {{--<div class="col-4">--}}
-                                {{----}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-
-                        {{--<div class="table-responsive">--}}
-                            {{--<table class="table">--}}
-                                {{--<tr>--}}
-                                    {{--<th>Название</th>--}}
-                                    {{--<th>Количество вопросов</th>--}}
-                                    {{--<th>Темы</th>--}}
-                                    {{--<th>Действие</th>--}}
-                                {{--</tr>--}}
-                            {{--</table>--}}
-                        {{--</div>--}}
-                        {{--<div class="float-right">--}}
-                            {{--{{ $quizTemplates->links() }}--}}
-                        {{--</div>--}}
-
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
     </div>
 </div>
 @endsection
