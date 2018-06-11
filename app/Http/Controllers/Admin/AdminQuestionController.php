@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Question;
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class AdminQuestionController extends Controller
@@ -51,11 +52,13 @@ class AdminQuestionController extends Controller
         $this->validate($request, [
             'text'=> 'required',
             'subject_id'=> 'required',
+            'complexity_level'=> 'required',
             'answers' => 'required'
         ], [
             'subject_id.required' => 'Пожалуйста, выберите тему',
             'text.required' => 'Пожалуйста, укажите название',
             'answers.required' => 'Пожалуйста, укажите ответы',
+            'complexity_level.required' => 'Пожалуйста, укажите сложность',
         ]);
 
         $request_answers = json_decode($request->answers);
@@ -78,6 +81,7 @@ class AdminQuestionController extends Controller
             }
             $question->subject_id = $request->subject_id;
             $question->correct_answers = $correctCount;
+            $question->complexity_level = $request->complexity_level;
             $question->save();
 
             foreach ($request_answers as $answer){
@@ -121,11 +125,13 @@ class AdminQuestionController extends Controller
         $this->validate($request, [
             'text'=> 'required',
             'subject_id'=> 'required',
-            'answers' => 'required'
+            'answers' => 'required',
+            'complexity_level' => 'required'
         ], [
             'subject_id.required' => 'Пожалуйста, выберите тему',
             'text.required' => 'Пожалуйста, укажите название',
             'answers.required' => 'Пожалуйста, укажите ответы',
+            'complexity_level.required' => 'Пожалуйста, укажите сложность',
         ]);
 
         $request_answers = json_decode($request->answers);
@@ -148,6 +154,7 @@ class AdminQuestionController extends Controller
             }
             $question->subject_id = $request->subject_id;
             $question->correct_answers = $correctCount;
+            $question->complexity_level = $request->complexity_level;
             $question->save();
 
             $question_old_answers = $question->answers;

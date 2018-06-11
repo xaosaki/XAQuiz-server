@@ -19,7 +19,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::prefix('quiz')->group(function () {
-    Route::get('/create/{templateId}', 'UserQuizController@create');
+    Route::post('/create', 'UserQuizController@create');
+    Route::get('/info/{templateId}', 'UserQuizController@info');
     Route::get('/{quizId}/result', 'UserQuizController@showResult');
     Route::get('/{quizId}/complete', 'UserQuizController@completeQuiz')->middleware(CheckQuizOwner::class);
     Route::get('/{quizId}/{questionNumber}', 'UserQuizController@question')->middleware(CheckQuizOwner::class);

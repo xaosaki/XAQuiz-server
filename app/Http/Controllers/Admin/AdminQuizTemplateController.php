@@ -58,10 +58,12 @@ class AdminQuizTemplateController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
+            'description'=> 'required',
             'subjects'=> 'required'
         ], [
             'subjects.required' => 'Пожалуйста, выберите темы',
             'name.required' => 'Пожалуйста, укажите название',
+            'description.required' => 'Пожалуйста, укажите описание',
         ]);
 
         $template_subjects = json_decode($request->subjects, true);
@@ -73,6 +75,7 @@ class AdminQuizTemplateController extends Controller
 
         $quiz_template = new QuizTemplate();
         $quiz_template->name = $request->name;
+        $quiz_template->description = $request->description;
         $quiz_template->save();
 
         foreach ($template_subjects as $subject){
@@ -123,10 +126,12 @@ class AdminQuizTemplateController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
+            'description'=> 'required',
             'subjects'=> 'required'
         ], [
         'subjects.required' => 'Пожалуйста, выберите темы',
         'name.required' => 'Пожалуйста, укажите название',
+        'description.required' => 'Пожалуйста, укажите описание',
         ]
         );
 
@@ -139,6 +144,7 @@ class AdminQuizTemplateController extends Controller
 
         $quiz_template = QuizTemplate::findOrFail($id);
         $quiz_template->name = $request->name;
+        $quiz_template->description = $request->description;
         $quiz_template->save();
 
 

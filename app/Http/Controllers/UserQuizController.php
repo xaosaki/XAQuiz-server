@@ -10,6 +10,7 @@ use App\QuizQuestion;
 use App\QuizTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class UserQuizController extends Controller
 {
@@ -24,28 +25,48 @@ class UserQuizController extends Controller
     }
 
     /**
-     * Отрисовывает форму создания теста
+     * Покаывает подробную информацию о тесте
      *
      * @param $templateId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create($templateId)
+    public function info($templateId)
     {
-        $template = QuizTemplate::with('subjects.questions')->findOrFail($templateId);
+        $quiz_template = QuizTemplate::findOrFail($templateId);
+        $complexity_levels = array_merge(['0' => 'Разная'], Config::get('enums.complexity_levels'));
+        return view('quiz.info', ['quiz_template' => $quiz_template, 'complexity_levels' => $complexity_levels]);
+    }
+
+    /**
+     * Отрисовывает форму создания теста
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Request $request)
+    {
+        $this->validate($request, [
+            'id'=> 'required',
+            'complexity_level'=> 'required'
+        ], [
+            'id.required' => 'Пожалуйста, укажите id',
+            'complexity_level.required' => 'Пожалуйста, укажите сложность',
+        ]);
+        $template = QuizTemplate::with('subjects.questions')->findOrFail($request->id);
+
         // Создаем новый тест
-        $quiz = $this->createNewQuiz($template);
+        $quiz = $this->createNewQuiz($template, $request['complexity_level']);
         $quiz->questions_count = 0;
 
         // Наполняем тест вопросами по темам
         foreach ($template['subjects'] as $subject ){
             // Попутно считаем общее количество вопросов
-            $quiz->questions_count += $this->addSubjectToQuiz($subject, $quiz->id);
+            $quiz->questions_count += $this->addSubjectToQuiz($subject, $quiz->id,$request['complexity_level']);
         }
 
         $quiz->save();
 
-
-        return view('quiz.create', ['quiz_id' => $quiz->id]);
+        return redirect()->to( url('/quiz/'.$quiz->id.'/1'));
     }
 
     /**
@@ -169,11 +190,12 @@ class UserQuizController extends Controller
      * @param $template
      * @return mixed
      */
-    private function createNewQuiz($template) {
+    private function createNewQuiz($template, $complexity_level) {
         $quiz = new Quiz();
         $quiz->quiz_template_id  = $template->id;
         $quiz->user_id  = Auth::id();
         $quiz->is_completed  = false;
+        $quiz->complexity_level  = $complexity_level;
         $quiz->save();
         return $quiz;
     }
@@ -185,9 +207,16 @@ class UserQuizController extends Controller
      * @param $quiz_id
      * @return int
      */
-    private function addSubjectToQuiz($subject, $quiz_id){
+    private function addSubjectToQuiz($subject, $quiz_id, $complexity_level){
         $number_of_questions = $subject->pivot['number_of_questions'];
-        $questions = Question::where('subject_id', $subject->id)->inRandomOrder()->take($number_of_questions)->get();
+        if($complexity_level !== "0"){
+            $questions = Question::where([
+                ['subject_id', '=', $subject->id],
+                ['complexity_level', '=', $complexity_level],
+            ])->inRandomOrder()->take($number_of_questions)->get();
+        } else {
+            $questions = Question::where('subject_id', $subject->id)->inRandomOrder()->take($number_of_questions)->get();
+        }
         foreach ($questions as $question) {
             $this->addQuestionToQuiz($question, $quiz_id);
         }

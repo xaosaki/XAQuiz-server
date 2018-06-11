@@ -29,6 +29,7 @@
                         <tr>
                             <th>Текст</th>
                             <th>Категория</th>
+                            <th>Уровень сложности</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
@@ -37,6 +38,7 @@
                             <tr>
                                 <td>{{ $item->text }}</td>
                                 <td>{{ $item->subjects->name }}</td>
+                                <td>{{ ($item->complexity_level) ? Config::get('enums.complexity_levels')[$item->complexity_level] : 'Не указано'}}</td>
                                 <td>
                                     <a href="{{ url('/admin/question/' . $item->id . '/edit') }}" title="Edit"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить</button></a>
                                     {!! Form::open([

@@ -5,6 +5,13 @@
         {!! $errors->first('subject_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+<div class="form-group{{ $errors->has('complexity_level') ? ' has-error' : ''}}">
+    {!! Form::label('complexity_level', 'Сложность: ', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {{ Form::select('complexity_level', Config::get('enums.complexity_levels'), null, ['class' => 'form-control', 'required' => 'required']) }}
+        {!! $errors->first('complexity_level', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
 <div class="form-group{{ $errors->has('name') ? ' has-error' : ''}}">
     {!! Form::label('text', 'Формулировка вопроса: ', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-12">
