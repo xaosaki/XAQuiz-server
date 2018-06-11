@@ -48,7 +48,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{url('/quizzes-list')}}">
                                         Мои тесты
                                     </a>
 

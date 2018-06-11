@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Quiz;
 use App\QuizTemplate;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,5 +35,15 @@ class HomeController extends Controller
             return $elem;
         });
         return view('home', compact('quizTemplates'));
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userQuizzes()
+    {
+        $quizzes = Quiz::with('template.subjects')->where('user_id', Auth::user()->id)->paginate(15);
+        return view('quizzes', compact('quizzes'));
     }
 }
