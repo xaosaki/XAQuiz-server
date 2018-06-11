@@ -10585,3 +10585,25 @@ body {
   margin-left: auto;
 }
 
+.results .results__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.results .results__list {
+  list-style: none;
+  font-size: 20px;
+  text-align: left;
+  padding-left: 20px;
+  line-height: 40px;
+}
+
+.results .results__chart {
+  width: 200px !important;
+  height: 200px !important;
+}
+

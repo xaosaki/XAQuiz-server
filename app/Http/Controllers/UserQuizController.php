@@ -180,8 +180,20 @@ class UserQuizController extends Controller
         if(!$quiz->is_completed) {
             return redirect('quiz/' . $quizId . '/1');
         }
+        $percents['correct'] = $quiz->right_answers_count * 100 / $quiz->questions_count;
+        $percents['fail'] =  100 - $percents['correct'];
+        $quiz['mark'] = 'Неудовлетворительно';
+        if($percents['correct'] > 59){
+            $quiz['mark'] = 'Удовлетворительно';
+        }
+        if($percents['correct'] > 74){
+            $quiz['mark'] = 'Хорошо';
+        }
+        if($percents['correct'] > 84){
+            $quiz['mark'] = 'Отлично';
+        }
 
-        return view('quiz.result', ['quiz_id' => $quiz->id, 'quizTitle' => $quiz->template->name,'quiz' => $quiz]);
+        return view('quiz.result', ['quiz_id' => $quiz->id, 'quizTitle' => $quiz->template->name,'quiz' => $quiz, 'percents' => $percents]);
     }
 
     /**

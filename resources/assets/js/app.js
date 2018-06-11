@@ -24,3 +24,38 @@ const app = new Vue({
 require('./quizTemplate');
 require('./answer');
 
+const Chart = require('chart.js');
+require('./Chart.PieceLabel.min');
+
+
+const chartHolder = document.querySelector('.js-result-chart');
+if(chartHolder){
+	var correct = chartHolder.getAttribute('data-correct');
+	var fail = 100 - correct;
+	var data = {
+		datasets: [{
+			data: [correct, fail],
+			backgroundColor: [
+				'rgba(178, 245, 178, 0.9)',
+				'rgba(245, 178, 178, 0.9)'
+			]
+		}],
+		labels: ['Верно', 'Не верно']
+
+		// These labels appear in the legend and in the tooltips when hovering different arcs
+	};
+	var myPieChart = new Chart(chartHolder,{
+		type: 'pie',
+		data: data,
+		options: {
+			legend: {
+				display: false
+			},
+			pieceLabel: {
+				render: 'percentage',
+				precision: 0
+			}
+		}
+	});
+}
+
