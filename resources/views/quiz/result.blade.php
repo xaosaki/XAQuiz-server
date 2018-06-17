@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <h3>Результаты тестирования</h3>
                     </div>
-                    <div class="card-body results__body">
+                    <div class="card-body results__body row">
                         <ul class="results__list">
                             <li>
                                 Тема теста: {{$quizTitle}}</li>

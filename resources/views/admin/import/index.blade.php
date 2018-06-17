@@ -13,7 +13,7 @@
                 <form action="{{ route('admin.import-question-post') }}" method="POST"  enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="questions" class="">
-                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary">Импортировать</button>
                 </form>
             </div>
         </div>

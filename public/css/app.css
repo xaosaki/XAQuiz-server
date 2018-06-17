@@ -10607,3 +10607,7 @@ body {
   height: 200px !important;
 }
 
+.submit-btn {
+  white-space: normal;
+}
+

@@ -18,10 +18,12 @@
                         <form action="{{url('/quiz/create')}}" method="POST">
                             @csrf
                             <input type="text" name="id" value="{{$quiz_template->id}}" hidden>
-                            <div class="quiz-info__form">
-                                {!! Form::label('complexity_level', 'Выберите сложность вопросов: ', ['class' => 'col-md-3 control-label']) !!}
-                                {{ Form::select('complexity_level', $complexity_levels, null, ['class' => 'form-control col-md-3', 'required' => 'required']) }}
-                                {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Начать тест', ['class' => 'btn btn-primary']) !!}
+                            <div class="col-12">
+                                <div class="quiz-info__form row">
+                                    {!! Form::label('complexity_level', 'Выберите сложность вопросов: ', ['class' => 'col-md-3 control-label']) !!}
+                                    {{ Form::select('complexity_level', $complexity_levels, null, ['class' => 'form-control col-md-3', 'required' => 'required', 'style' => 'margin-bottom: 10px;']) }}
+                                    {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Начать тест', ['class' => 'btn btn-primary']) !!}
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -36,17 +36,21 @@
                             @endswitch
                             @if($questionNumber < $questionCount)
                                 @if(!$is_completed)
-                                    <button class="btn btn-primary">Ответить и перейти к следующему вопросу</button>
+                                    <button class="btn btn-primary submit-btn">Ответить и перейти к следующему вопросу</button>
                                 @else
                                     <button class="btn btn-primary" disabled>Ответ принят</button>
                                 @endif
                             @else
-                                <a href="{{ url('/quiz/'.$quizId.'/complete') }}" class="btn btn-success pull-right">Завершить тест</a>
-                                @if(!$is_completed)
-                                    <button class="btn btn-primary">Ответить</button>
-                                @else
-                                    <button class="btn btn-primary" disabled>Ответ принят</button>
-                                @endif
+                                <div class="col-12">
+                                    <div class="row justify-content-between align-items-center">
+                                        @if(!$is_completed)
+                                            <button class="btn btn-primary" style="margin-bottom: 10px">Ответить</button>
+                                        @else
+                                            <button class="btn btn-primary" disabled>Ответ принят</button>
+                                        @endif
+                                        <a href="{{ url('/quiz/'.$quizId.'/complete') }}" class="btn btn-success pull-right">Завершить тест</a>
+                                    </div>
+                                </div>
                             @endif
                         </form>
                     </div>
